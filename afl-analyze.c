@@ -1046,10 +1046,10 @@ int main(int argc, char** argv) {
 
       case 'Q':
 
-        if (qemu_mode) FATAL("Multiple -Q options not supported");
+      //  if (qemu_mode) FATAL("Multiple -Q options not supported");
         if (!mem_limit_given) mem_limit = MEM_LIMIT_QEMU;
 
-        qemu_mode = 1;
+        qemu_mode += 1;
         break;
 
       default:
@@ -1071,7 +1071,8 @@ int main(int argc, char** argv) {
   detect_file_args(argv + optind);
 
   if (qemu_mode)
-    use_argv = get_qemu_argv(argv[0], argv + optind, argc - optind);
+    use_argv = get_qemu_argv(qemu_mode, argv[0], argv + optind, argc - optind);
+ //use_argv = get_qemu_argv(argv[0], argv + optind, argc - optind);
   else
     use_argv = argv + optind;
 
